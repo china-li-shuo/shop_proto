@@ -16,10 +16,11 @@ service User {
   // 定义一个 CreateUser 创建用户
   rpc CreateUser(CreateUserInfo) returns (UserInfoResponse);
   // 定义一个 UpdateUser 更新用户
-  rpc UpdateUser(UpdateUserInfo) returns (UserInfoResponse);
+  rpc UpdateUser(UpdateUserInfo) returns (Empty);
 
 }
 
+message Empty {}
 
 // 定义GetUserList 方法请求体
 message PageInfo {
