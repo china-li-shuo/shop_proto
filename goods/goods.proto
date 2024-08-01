@@ -109,13 +109,13 @@ message GoodsInfoResponse {
   float shopPrice = 10;
   string goodsBrief = 11;
   string goodsDesc = 12;
-  int32 shipFree = 13;
+  bool shipFree = 13;
   repeated string images = 14;
   repeated string descImages = 15;
   string goodsFrontImage = 16;
-  int32 isNew = 17;
-  int32 isHot = 18;
-  int32 onSale = 19;
+  bool isNew = 17;
+  bool isHot = 18;
+  bool onSale = 19;
   int64 addTime = 20;
   CategoryBriefInfoResponse category = 21;
   BrandInfoResponse brand = 22;
