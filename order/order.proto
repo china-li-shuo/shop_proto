@@ -18,7 +18,7 @@ service Order {
   rpc Create(OrderRequest) returns (OrderInfoResponse); //创建订单
   rpc OrderList(OrderFilterRequest) returns (OrderListResponse); // 订单列表
   rpc OrderDetail(OrderRequest) returns (OrderInfoDetailResponse); // 订单详情
-  rpc UpdateOrder(UpdateOrderInfo) returns (OrderEmpty); // 修改订单状态
+  rpc UpdateOrder(UpdateOrderInfo) returns (OrderEmpty); //  修改订单状态
 
 }
 
