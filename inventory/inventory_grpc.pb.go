@@ -32,14 +32,14 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type InventoryClient interface {
 	// 设置库存的rpc方法
-	SetInv(ctx context.Context, in *GoodsInvInfo, opts ...grpc.CallOption) (*Empty, error)
+	SetInv(ctx context.Context, in *GoodsInvInfo, opts ...grpc.CallOption) (*InventoryEmpty, error)
 	// 获取库存信息
 	InvDetail(ctx context.Context, in *GoodsInvInfo, opts ...grpc.CallOption) (*GoodsInvInfo, error)
 	// 因为购物车有可能添加多件商品，所以下订单是扣减多件商品的库存
 	// 扣减库存
-	Sell(ctx context.Context, in *SellInfo, opts ...grpc.CallOption) (*Empty, error)
+	Sell(ctx context.Context, in *SellInfo, opts ...grpc.CallOption) (*InventoryEmpty, error)
 	// 归还库存
-	Reback(ctx context.Context, in *SellInfo, opts ...grpc.CallOption) (*Empty, error)
+	Reback(ctx context.Context, in *SellInfo, opts ...grpc.CallOption) (*InventoryEmpty, error)
 }
 
 type inventoryClient struct {
@@ -50,8 +50,8 @@ func NewInventoryClient(cc grpc.ClientConnInterface) InventoryClient {
 	return &inventoryClient{cc}
 }
 
-func (c *inventoryClient) SetInv(ctx context.Context, in *GoodsInvInfo, opts ...grpc.CallOption) (*Empty, error) {
-	out := new(Empty)
+func (c *inventoryClient) SetInv(ctx context.Context, in *GoodsInvInfo, opts ...grpc.CallOption) (*InventoryEmpty, error) {
+	out := new(InventoryEmpty)
 	err := c.cc.Invoke(ctx, Inventory_SetInv_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -68,8 +68,8 @@ func (c *inventoryClient) InvDetail(ctx context.Context, in *GoodsInvInfo, opts 
 	return out, nil
 }
 
-func (c *inventoryClient) Sell(ctx context.Context, in *SellInfo, opts ...grpc.CallOption) (*Empty, error) {
-	out := new(Empty)
+func (c *inventoryClient) Sell(ctx context.Context, in *SellInfo, opts ...grpc.CallOption) (*InventoryEmpty, error) {
+	out := new(InventoryEmpty)
 	err := c.cc.Invoke(ctx, Inventory_Sell_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -77,8 +77,8 @@ func (c *inventoryClient) Sell(ctx context.Context, in *SellInfo, opts ...grpc.C
 	return out, nil
 }
 
-func (c *inventoryClient) Reback(ctx context.Context, in *SellInfo, opts ...grpc.CallOption) (*Empty, error) {
-	out := new(Empty)
+func (c *inventoryClient) Reback(ctx context.Context, in *SellInfo, opts ...grpc.CallOption) (*InventoryEmpty, error) {
+	out := new(InventoryEmpty)
 	err := c.cc.Invoke(ctx, Inventory_Reback_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -91,14 +91,14 @@ func (c *inventoryClient) Reback(ctx context.Context, in *SellInfo, opts ...grpc
 // for forward compatibility
 type InventoryServer interface {
 	// 设置库存的rpc方法
-	SetInv(context.Context, *GoodsInvInfo) (*Empty, error)
+	SetInv(context.Context, *GoodsInvInfo) (*InventoryEmpty, error)
 	// 获取库存信息
 	InvDetail(context.Context, *GoodsInvInfo) (*GoodsInvInfo, error)
 	// 因为购物车有可能添加多件商品，所以下订单是扣减多件商品的库存
 	// 扣减库存
-	Sell(context.Context, *SellInfo) (*Empty, error)
+	Sell(context.Context, *SellInfo) (*InventoryEmpty, error)
 	// 归还库存
-	Reback(context.Context, *SellInfo) (*Empty, error)
+	Reback(context.Context, *SellInfo) (*InventoryEmpty, error)
 	mustEmbedUnimplementedInventoryServer()
 }
 
@@ -106,16 +106,16 @@ type InventoryServer interface {
 type UnimplementedInventoryServer struct {
 }
 
-func (UnimplementedInventoryServer) SetInv(context.Context, *GoodsInvInfo) (*Empty, error) {
+func (UnimplementedInventoryServer) SetInv(context.Context, *GoodsInvInfo) (*InventoryEmpty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetInv not implemented")
 }
 func (UnimplementedInventoryServer) InvDetail(context.Context, *GoodsInvInfo) (*GoodsInvInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method InvDetail not implemented")
 }
-func (UnimplementedInventoryServer) Sell(context.Context, *SellInfo) (*Empty, error) {
+func (UnimplementedInventoryServer) Sell(context.Context, *SellInfo) (*InventoryEmpty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Sell not implemented")
 }
-func (UnimplementedInventoryServer) Reback(context.Context, *SellInfo) (*Empty, error) {
+func (UnimplementedInventoryServer) Reback(context.Context, *SellInfo) (*InventoryEmpty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Reback not implemented")
 }
 func (UnimplementedInventoryServer) mustEmbedUnimplementedInventoryServer() {}
