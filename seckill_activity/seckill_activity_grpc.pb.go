@@ -30,7 +30,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type SeckillActivityClient interface {
 	// 秒杀活动列表
-	SeckillActivityList(ctx context.Context, in *SeckillActivityEmpty, opts ...grpc.CallOption) (*SeckillActivityListResp, error)
+	SeckillActivityList(ctx context.Context, in *SeckillActivityListReq, opts ...grpc.CallOption) (*SeckillActivityListResp, error)
 	// 秒杀购买记录表
 	//
 	//	rpc SeckillRecordList() returns();
@@ -51,7 +51,7 @@ func NewSeckillActivityClient(cc grpc.ClientConnInterface) SeckillActivityClient
 	return &seckillActivityClient{cc}
 }
 
-func (c *seckillActivityClient) SeckillActivityList(ctx context.Context, in *SeckillActivityEmpty, opts ...grpc.CallOption) (*SeckillActivityListResp, error) {
+func (c *seckillActivityClient) SeckillActivityList(ctx context.Context, in *SeckillActivityListReq, opts ...grpc.CallOption) (*SeckillActivityListResp, error) {
 	out := new(SeckillActivityListResp)
 	err := c.cc.Invoke(ctx, SeckillActivity_SeckillActivityList_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -74,7 +74,7 @@ func (c *seckillActivityClient) SeckillRecordCreate(ctx context.Context, in *Sec
 // for forward compatibility
 type SeckillActivityServer interface {
 	// 秒杀活动列表
-	SeckillActivityList(context.Context, *SeckillActivityEmpty) (*SeckillActivityListResp, error)
+	SeckillActivityList(context.Context, *SeckillActivityListReq) (*SeckillActivityListResp, error)
 	// 秒杀购买记录表
 	//
 	//	rpc SeckillRecordList() returns();
@@ -92,7 +92,7 @@ type SeckillActivityServer interface {
 type UnimplementedSeckillActivityServer struct {
 }
 
-func (UnimplementedSeckillActivityServer) SeckillActivityList(context.Context, *SeckillActivityEmpty) (*SeckillActivityListResp, error) {
+func (UnimplementedSeckillActivityServer) SeckillActivityList(context.Context, *SeckillActivityListReq) (*SeckillActivityListResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SeckillActivityList not implemented")
 }
 func (UnimplementedSeckillActivityServer) SeckillRecordCreate(context.Context, *SeckillRecordCreateRequest) (*SeckillActivityEmpty, error) {
@@ -112,7 +112,7 @@ func RegisterSeckillActivityServer(s grpc.ServiceRegistrar, srv SeckillActivityS
 }
 
 func _SeckillActivity_SeckillActivityList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SeckillActivityEmpty)
+	in := new(SeckillActivityListReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -124,7 +124,7 @@ func _SeckillActivity_SeckillActivityList_Handler(srv interface{}, ctx context.C
 		FullMethod: SeckillActivity_SeckillActivityList_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SeckillActivityServer).SeckillActivityList(ctx, req.(*SeckillActivityEmpty))
+		return srv.(SeckillActivityServer).SeckillActivityList(ctx, req.(*SeckillActivityListReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }

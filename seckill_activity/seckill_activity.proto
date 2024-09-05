@@ -9,7 +9,7 @@ option go_package = ".;seckill_activity_pb";
 // 定义商品服务
 service SeckillActivity {
   //秒杀活动列表
-  rpc SeckillActivityList(SeckillActivityEmpty) returns(SeckillActivityListResp);
+  rpc SeckillActivityList(SeckillActivityListReq) returns(SeckillActivityListResp);
   //秒杀活动详情
 //  rpc SeckillActivityDetail(SeckillActivityEmpty) returns();
   //秒杀活动创建
