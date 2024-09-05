@@ -756,7 +756,7 @@ type OrderInfoDetailResponse struct {
 	unknownFields protoimpl.UnknownFields
 
 	OrderInfo *OrderInfoResponse   `protobuf:"bytes,1,opt,name=orderInfo,proto3" json:"orderInfo,omitempty"`
-	Goods     []*OrderItemResponse `protobuf:"bytes,2,rep,name=goods,proto3" json:"goods,omitempty"`
+	Goods     []*OrderItemResponse `protobuf:"bytes,2,rep,name=seckill,proto3" json:"seckill,omitempty"`
 }
 
 func (x *OrderInfoDetailResponse) Reset() {
@@ -1152,7 +1152,7 @@ var file_order_proto_depIdxs = []int32{
 	0,  // 1: OrderFilterRequest.payType:type_name -> OrderFilterRequest.PayTypes
 	7,  // 2: OrderListResponse.data:type_name -> OrderInfoResponse
 	7,  // 3: OrderInfoDetailResponse.orderInfo:type_name -> OrderInfoResponse
-	11, // 4: OrderInfoDetailResponse.goods:type_name -> OrderItemResponse
+	11, // 4: OrderInfoDetailResponse.seckill:type_name -> OrderItemResponse
 	2,  // 5: Order.CartItemList:input_type -> UserInfo
 	5,  // 6: Order.CreateCartItem:input_type -> CartItemRequest
 	5,  // 7: Order.UpdateCartItem:input_type -> CartItemRequest
