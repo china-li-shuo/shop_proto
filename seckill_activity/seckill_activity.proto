@@ -58,8 +58,8 @@ message SeckillActivityListReq {
 message SeckillActivityData {
   int64 id = 1;
   string name = 2;
-  string activity_start_time = 3;
-  string activity_end_time = 4;
+  int32 activity_start_time = 3;
+  int32 activity_end_time = 4;
   int32 status = 5;
 }
 
