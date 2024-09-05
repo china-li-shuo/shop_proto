@@ -4,7 +4,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.3.0
 // - protoc             v3.19.4
-// source: goods.proto
+// source: seckill_activity.proto
 
 package goods_pb
 
@@ -977,5 +977,5 @@ var Goods_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "goods.proto",
+	Metadata: "seckill_activity.proto",
 }
